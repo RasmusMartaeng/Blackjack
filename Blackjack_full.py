@@ -49,8 +49,6 @@ def blackjackRound(balance):
     print("Dealer: " + "Hole" + " & " + dealerHand[1])
     time.sleep(1)
 
-    checkBlackjack(playerHand, dealerHand)
-
     playerHand, deck, playerBust = hitOrStand(playerHand, deck)
 
     if playerBust == True:
@@ -62,7 +60,7 @@ def blackjackRound(balance):
 
         balance = evaluate(playerHand, playerBust, dealerHand, dealerBust, balance, bet)
 
-    return balance
+    return float(balance)
 
 def generateDeck():
 
@@ -78,22 +76,6 @@ def drawCard(deck):
     deck.remove(str(card))
 
     return card, deck
-
-def checkBlackjack(playerHand, dealerHand):
-    playerHandSum = sumHand(playerHand)
-    dealerHandSum = sumHand(dealerHand)
-    if playerHandSum == 21 and dealerHandSum != 21:
-        print("player Win")
-        #playerWin()
-    elif playerHandSum != 21 and dealerHandSum == 21:
-        print("house Win")
-        print(dealerHand[0] + dealerHand[1])
-        #houseWin()
-    elif playerHandSum == 21 and dealerHandSum == 21:
-        print("Push")
-        print(dealerHand[0] + dealerHand[1])
-        #push()
-        return
 
 def checkBust(hand):
     handSum = sumHand(hand)
@@ -172,7 +154,7 @@ def evaluate(playerHand, playerBust, dealerHand, dealerBust, balance, bet):
     elif sumHand(playerHand) == sumHand(dealerHand):
         balance = playerPush(balance)
 
-    return balance
+    return float(balance)
 
 
 
